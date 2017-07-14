@@ -17,10 +17,15 @@ return [
         ],
 
         'db' => [
+            'driver' => 'mysql',
             'host' => getenv('DB_HOST'),
-            'user' => getenv('DB_USERNAME'),
-            'pass' => getenv('DB_PASSWORD'),
-            'dbname' => getenv('DB_DATABASE'),
+            'port' => 3306,
+            'database' => getenv('DB_DATABASE'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
         ]
     ],
 ];
