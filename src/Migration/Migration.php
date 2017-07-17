@@ -13,9 +13,6 @@ class Migration extends AbstractMigration {
 
     public function init()
     {
-        $dotenv = new \Dotenv\Dotenv(__DIR__.'/../../');
-        $dotenv->load();
-
         $settings = require __DIR__ . '/../settings.php';
 
         $this->capsule = new Capsule;
