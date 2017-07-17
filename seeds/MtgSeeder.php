@@ -1,21 +1,21 @@
 <?php
 
-use Phinx\Seed\AbstractSeed;
+use App\Migration\Seed;
 
-class MtgSeeder extends AbstractSeed
+class MtgSeeder extends Seed
 {
     public function run()
     {
         ini_set('memory_limit', '-1');
-        $data = json_decode('../storage/AllSets.json');
+        $data = json_decode(file_get_contents('http://mtgjson.com/json/AllSets.json'));
         foreach ($data as $set) {
-            echo 'Seeding: ' . $set->name;
+            echo 'Seeding: ' . $set->name . PHP_EOL;
             $setData = $this->normalizeSetData($set);
             unset($setData['cards']);
-            $magicSet = App\Set::create($setData);
+            $magicSet = App\Models\Set::create($setData);
             foreach($set->cards as $card) {
                 $cardData = $this->normalizeCardData($card, $magicSet);
-                $magicCard = new App\Card($cardData);
+                $magicCard = new App\Models\Card($cardData);
                 $magicCard->save();
             }
         }
