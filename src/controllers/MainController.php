@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Controllers;
 
 use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
@@ -8,17 +8,14 @@ use Illuminate\Database\Query\Builder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class WidgetController
+class MainController
 {
     private $view;
     private $logger;
     protected $table;
 
-    public function __construct(
-        Twig $view,
-        LoggerInterface $logger,
-        Builder $table
-    ) {
+    public function __construct(Twig $view, LoggerInterface $logger, Builder $table)
+    {
         $this->view = $view;
         $this->logger = $logger;
         $this->table = $table;
